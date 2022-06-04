@@ -3,6 +3,7 @@ import NewKegForm from './NewKegForm';
 import KegList from './KegList';
 import KegDetail from './KegDetail';
 
+
 class KegControl extends React.Component {
 
   constructor(props) {
@@ -11,16 +12,19 @@ class KegControl extends React.Component {
       formVisibleOnPage: false,
       mainKegList: [],
       selectedKeg: null,
+
     };
     this.handleClick = this.handleClick.bind(this);
   }
-
-  decreasePints = () =>{
-
+  
+  handleDecrement = (kegToDecrement) =>{
+    let newValue = kegToDecrement.pints -1;
+    this.setState({[kegToDecrement.pints]: newValue})
   }
-  handleDecreasePints = () =>{
 
-  }
+  
+
+
   handleDeletingKeg = (id) => {
     const newMainKegList = this.state.mainKegList.filter(keg => keg.id !== id); 
     this.setState({
@@ -61,7 +65,7 @@ class KegControl extends React.Component {
  
 
     if (this.state.selectedKeg != null) {
-      currentlyVisibleState = <KegDetail keg = {this.state.selectedKeg} onClickingDelete = {this.handleDeletingKeg}  />
+      currentlyVisibleState = <KegDetail keg = {this.state.selectedKeg} onClickingDelete = {this.handleDeletingKeg} onClickingDecrease ={this.handleDecrement} />
       console.log(this.state.selectedKeg.pints);
       buttonText = "Return to Keg List";
     }
