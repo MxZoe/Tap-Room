@@ -16,10 +16,23 @@ class KegControl extends React.Component {
     };
     this.handleClick = this.handleClick.bind(this);
   }
-  
-  handleDecrement = (kegToDecrement) =>{
-    let newValue = kegToDecrement.pints -1;
-    this.setState({[kegToDecrement.pints]: newValue})
+
+  decreasePints = (keg) => {
+    let newValue = this.validatePints(this.props.selectedKeg.pints - 1);
+    this.setState({[keg.target.pints]: newValue,})
+  }
+
+
+  handleDecreasePints = (kegToDecrease) => {
+    const editedMainKegList = this.state.mainKegList
+    .filter(keg => keg.id !== this.state.selectedKeg.id)
+    this.decreasePints(kegToDecrease)
+    .concat(kegToDecrease);   
+    console.log(kegToDecrease.pints) 
+    this.setState({
+      mainKegList: editedMainKegList,
+      selectedLog: null
+    });   
   }
 
   
@@ -58,14 +71,20 @@ class KegControl extends React.Component {
     }
   }
 
+  validatePints(value){
+    if(value < this.props.pintMin) {
+      value = this.props.pintMin;
+    } 
+    return value;
+  }
+
 
   render(){
     let currentlyVisibleState = null;
     let buttonText = null;
  
-
     if (this.state.selectedKeg != null) {
-      currentlyVisibleState = <KegDetail keg = {this.state.selectedKeg} onClickingDelete = {this.handleDeletingKeg} onClickingDecrease ={this.handleDecrement} />
+      currentlyVisibleState = <KegDetail keg = {this.state.selectedKeg} onClickingDelete = {this.handleDeletingKeg} onClickingDecrease ={this.handleDecreasePints} />
       console.log(this.state.selectedKeg.pints);
       buttonText = "Return to Keg List";
     }
