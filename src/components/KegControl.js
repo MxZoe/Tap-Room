@@ -17,16 +17,17 @@ class KegControl extends React.Component {
     this.handleClick = this.handleClick.bind(this);
   }
 
-  handleChange = (e) => {
-    let value = (e.target.value ? parseInt(e.target.value) : 0);
-    value = this.validateValue(value);
-    this.setState({[e.target.pints]: value});
-}
+//   handleChange = (e) => {
+//     let value = (e.target.value ? parseInt(e.target.value) : 0);
+//     value = this.validateValue(value);
+//     this.setState({[e.target.pints]: value});
+// }
 
   decreasePints = (keg) => {
     let newValue = this.validatePints(keg.pints - 1);
-    this.setState({[keg.pints]: newValue,})
-    console.log(keg.pints);
+    console.log(newValue)
+    this.setState({[keg.pints]: newValue})
+    console.log(keg.pints)
   }
 
 
@@ -38,13 +39,11 @@ class KegControl extends React.Component {
     console.log(kegToDecrease.pints) 
     this.setState({
       mainKegList: editedMainKegList,
-      selectedLog: null
+      selectedKeg: kegToDecrease,
     });   
   }
 
   
-
-
   handleDeletingKeg = (id) => {
     const newMainKegList = this.state.mainKegList.filter(keg => keg.id !== id); 
     this.setState({
