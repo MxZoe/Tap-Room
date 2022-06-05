@@ -1,6 +1,7 @@
-# Getting Started with Create React App
+# Tap Room by Zoe Weinstein
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+View the planning doc at: https://drive.google.com/file/d/1IEOttuG7eEhjI0K4nCdmuKSQiCNB6lb9/view?usp=sharing
 
 ## Available Scripts
 
@@ -69,4 +70,3 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 
-https://drive.google.com/file/d/1IEOttuG7eEhjI0K4nCdmuKSQiCNB6lb9/view?usp=sharing
