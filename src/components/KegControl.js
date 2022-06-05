@@ -32,14 +32,13 @@ class KegControl extends React.Component {
 
 
   handleDecreasePints = (kegToDecrease) => {
+    this.decreasePints(kegToDecrease)
     const editedMainKegList = this.state.mainKegList
     .filter(keg => keg.id !== this.state.selectedKeg.id)
     .concat(kegToDecrease); 
-    this.decreasePints(kegToDecrease) 
     console.log(kegToDecrease.pints) 
     this.setState({
-      mainKegList: editedMainKegList,
-      selectedKeg: kegToDecrease,
+      mainKegList: editedMainKegList
     });   
   }
 

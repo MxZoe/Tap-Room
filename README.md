@@ -2,7 +2,8 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 View the planning doc at: https://drive.google.com/file/d/1IEOttuG7eEhjI0K4nCdmuKSQiCNB6lb9/view?usp=sharing
-
+## Bugs
+Currently, the functions to decrease the number of pints a keg do not work. I believe itt is an issue of setting the state of a child component from a parent.
 ## Available Scripts
 
 In the project directory, you can run:
