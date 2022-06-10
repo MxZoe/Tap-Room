@@ -17,29 +17,26 @@ class KegControl extends React.Component {
     this.handleClick = this.handleClick.bind(this);
   }
 
-//   handleChange = (e) => {
-//     let value = (e.target.value ? parseInt(e.target.value) : 0);
-//     value = this.validateValue(value);
-//     this.setState({[e.target.pints]: value});
-// }
-
-  decreasePints = (keg) => {
-    let newValue = this.validatePints(keg.pints - 1);
-    console.log(newValue)
-    this.setState({[keg.pints]: newValue})
-    console.log(keg.pints)
-  }
 
 
-  handleDecreasePints = (kegToDecrease) => {
-    this.decreasePints(kegToDecrease)
-    const editedMainKegList = this.state.mainKegList
-    .filter(keg => keg.id !== this.state.selectedKeg.id)
-    .concat(kegToDecrease); 
-    console.log(kegToDecrease.pints) 
+
+
+  handleDecreasePints = (id) => {
+    const selectedKeg = this.state.mainKegList.filter(keg => keg.id === id)[0];
+    const newMainKegList = this.state.mainKegList.map((element) => {
+      if (element.id === id) {
+        if(element.pints > 0){
+          const keg = {...element, pints: element.pints - 1}
+          console.log(keg.pints)
+          return keg;
+        }
+      } 
+      return element;
+    });
     this.setState({
-      mainKegList: editedMainKegList
-    });   
+      mainKegList: newMainKegList,
+      selectedKeg: selectedKeg
+    });
   }
 
   
@@ -67,7 +64,6 @@ class KegControl extends React.Component {
       this.setState({
         formVisibleOnPage: false,
         selectedKeg: null,
-        editing: false
       });
     } else {
       this.setState(prevState => ({
@@ -76,12 +72,7 @@ class KegControl extends React.Component {
     }
   }
 
-  validatePints(value){
-    if(value < this.props.min) {
-      value = this.props.min;
-    } 
-    return value;
-  }
+
 
 
   render(){
@@ -90,7 +81,6 @@ class KegControl extends React.Component {
  
     if (this.state.selectedKeg != null) {
       currentlyVisibleState = <KegDetail keg = {this.state.selectedKeg} onClickingDelete = {this.handleDeletingKeg} onClickingDecrease ={this.handleDecreasePints} onChanging={this.handleChange}/>
-      console.log(this.state.selectedKeg.pints);
       buttonText = "Return to Keg List";
     }
     else if (this.state.formVisibleOnPage) {
